@@ -1,0 +1,360 @@
+{% extends "base.html" %}
+
+{% block title %}Settings - ZKTeco Attendance Management{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>
+            <i class="fas fa-cog me-2"></i>
+            System Settings
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-folder me-2"></i>
+                    File Paths Configuration
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="csvExportPath" class="form-label">CSV Export Path</label>
+                        <input type="text" class="form-control" id="csvExportPath" name="csv_export_path" 
+                               value="{{ settings.csv_export_path }}" required>
+                        <div class="form-text">Path where attendance CSV files will be exported</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="employeeCsvPath" class="form-label">Employee CSV Path</label>
+                        <input type="text" class="form-control" id="employeeCsvPath" name="employee_csv_path" 
+                               value="{{ settings.employee_csv_path }}" required>
+                        <div class="form-text">Path to CSV file containing active employee data</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="terminatedCsvPath" class="form-label">Terminated Employees CSV Path</label>
+                        <input type="text" class="form-control" id="terminatedCsvPath" name="terminated_csv_path" 
+                               value="{{ settings.terminated_csv_path }}" required>
+                        <div class="form-text">Path to CSV file containing terminated employee data</div>
+                    </div>
+                    
+                    <hr class="my-4">
+                    <h6 class="mb-3">Schedule Configuration</h6>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="csvExportInterval" class="form-label">CSV Export Interval (minutes)</label>
+                            <input type="number" class="form-control" id="csvExportInterval" name="csv_export_interval" 
+                                   value="{{ settings.csv_export_interval }}" min="1" max="1440" required>
+                            <div class="form-text">How often to export attendance logs to CSV</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="employeeSyncTime" class="form-label">Employee Sync Time (24hr format)</label>
+                            <input type="time" class="form-control" id="employeeSyncTime" name="employee_sync_time" 
+                                   value="{{ settings.employee_sync_time }}" required>
+                            <div class="form-text">Daily time to sync employee data</div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i>Save Settings
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-sync me-2"></i>
+                    Manual Operations
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-info w-100" onclick="exportCsvManual()">
+                            <i class="fas fa-download me-1"></i>
+                            Export CSV Now
+                        </button>
+                        <small class="form-text">Manually trigger CSV export of attendance logs</small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-warning w-100" onclick="syncEmployeesManual()">
+                            <i class="fas fa-users me-1"></i>
+                            Sync Employees Now
+                        </button>
+                        <small class="form-text">Manually sync employee data from external sources</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-success w-100" onclick="syncAllDevices()">
+                            <i class="fas fa-mobile-alt me-1"></i>
+                            Sync All Devices
+                        </button>
+                        <small class="form-text">Sync time and user data to all connected devices</small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-secondary w-100" onclick="refreshAllLogs()">
+                            <i class="fas fa-refresh me-1"></i>
+                            Refresh All Logs
+                        </button>
+                        <small class="form-text">Pull latest attendance logs from all devices</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-danger w-100" onclick="processTerminatedEmployees()">
+                            <i class="fas fa-user-times me-1"></i>
+                            Process Terminated Employees
+                        </button>
+                        <small class="form-text">Manually process terminated employees from CSV</small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <button class="btn btn-primary w-100" onclick="syncUserTemplates()">
+                            <i class="fas fa-fingerprint me-1"></i>
+                            Sync User Templates
+                        </button>
+                        <small class="form-text">Sync biometric templates to all devices</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    System Information
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <strong>Automated Tasks:</strong>
+                    <ul class="mt-2">
+                        <li>CSV Export: Every {{ settings.csv_export_interval }} minutes</li>
+                        <li>Employee Sync: Daily at {{ settings.employee_sync_time }}</li>
+                        <li>Device Status Check: Every 30 seconds</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-3">
+                    <strong>CSV Export Format:</strong>
+                    <p class="small">User ID, Name, Timestamp, Status, Device ID, Area</p>
+                </div>
+                
+                <div class="mb-3">
+                    <strong>Employee CSV Format:</strong>
+                    <p class="small">user_id, first_name, last_name, job_description</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-key me-2"></i>
+                    Change Password
+                </h5>
+            </div>
+            <div class="card-body">
+                <form id="passwordForm">
+                    <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Current Password</label>
+                        <input type="password" class="form-control" id="currentPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="newPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-key me-1"></i>Change Password
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function exportCsvManual() {
+    const button = event.target;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Exporting...';
+    button.disabled = true;
+    
+    fetch('/api/manual/export_csv', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        button.innerHTML = '<i class="fas fa-download me-1"></i>Export CSV Now';
+        button.disabled = false;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during CSV export');
+        button.innerHTML = '<i class="fas fa-download me-1"></i>Export CSV Now';
+        button.disabled = false;
+    });
+}
+
+function syncEmployeesManual() {
+    const button = event.target;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Syncing...';
+    button.disabled = true;
+    
+    fetch('/api/manual/sync_employees', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        button.innerHTML = '<i class="fas fa-users me-1"></i>Sync Employees Now';
+        button.disabled = false;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during employee sync');
+        button.innerHTML = '<i class="fas fa-users me-1"></i>Sync Employees Now';
+        button.disabled = false;
+    });
+}
+
+function syncAllDevices() {
+    const button = event.target;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Syncing...';
+    button.disabled = true;
+    
+    fetch('/api/manual/sync_all_devices', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        button.innerHTML = '<i class="fas fa-mobile-alt me-1"></i>Sync All Devices';
+        button.disabled = false;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during device sync');
+        button.innerHTML = '<i class="fas fa-mobile-alt me-1"></i>Sync All Devices';
+        button.disabled = false;
+    });
+}
+
+function refreshAllLogs() {
+    const button = event.target;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Refreshing...';
+    button.disabled = true;
+    
+    fetch('/api/manual/refresh_all_logs', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        button.innerHTML = '<i class="fas fa-refresh me-1"></i>Refresh All Logs';
+        button.disabled = false;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during log refresh');
+        button.innerHTML = '<i class="fas fa-refresh me-1"></i>Refresh All Logs';
+        button.disabled = false;
+    });
+}
+
+function processTerminatedEmployees() {
+    const button = event.target;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Processing...';
+    button.disabled = true;
+    
+    fetch('/api/manual/process_terminated', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        button.innerHTML = '<i class="fas fa-user-times me-1"></i>Process Terminated Employees';
+        button.disabled = false;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during terminated employee processing');
+        button.innerHTML = '<i class="fas fa-user-times me-1"></i>Process Terminated Employees';
+        button.disabled = false;
+    });
+}
+
+function syncUserTemplates() {
+    const button = event.target;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Syncing...';
+    button.disabled = true;
+    
+    fetch('/api/manual/sync_templates', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        button.innerHTML = '<i class="fas fa-fingerprint me-1"></i>Sync User Templates';
+        button.disabled = false;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during template sync');
+        button.innerHTML = '<i class="fas fa-fingerprint me-1"></i>Sync User Templates';
+        button.disabled = false;
+    });
+}
+
+document.getElementById('passwordForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    
+    if (newPassword !== confirmPassword) {
+        alert('New passwords do not match');
+        return;
+    }
+    
+    // This would make an AJAX call to change password
+    alert('Password change functionality would be implemented here');
+});
+</script>
+{% endblock %}
