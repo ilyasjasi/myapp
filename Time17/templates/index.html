@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - ZKTeco Attendance Management{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>
+            <i class="fas fa-tachometer-alt me-2"></i>
+            Dashboard
+        </h1>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card bg-primary">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Total Devices</h5>
+                        <h2>{{ stats.total_devices }}</h2>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-mobile-alt fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card bg-success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Online Devices</h5>
+                        <h2>{{ stats.online_devices }}</h2>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-wifi fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card bg-info">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Active Employees</h5>
+                        <h2>{{ stats.total_users }}</h2>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card bg-warning">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Total Logs</h5>
+                        <h2>{{ stats.total_logs }}</h2>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-list fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Attendance Chart -->
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-line me-2"></i>
+                    Attendance Overview
+                </h5>
+            </div>
+            <div class="card-body">
+                <canvas id="attendanceChart" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-calendar-day me-2"></i>
+                    Today vs Yesterday
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <h4 class="text-success">{{ stats.today_logs }}</h4>
+                        <p class="mb-0">Today</p>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-info">{{ stats.yesterday_logs }}</h4>
+                        <p class="mb-0">Yesterday</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Device Status and Recent Logs -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-mobile-alt me-2"></i>
+                    Device Status
+                    <button class="btn btn-sm btn-outline-light float-end" id="refreshStatus">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="deviceStatus">
+                    {% for device_stat in device_stats %}
+                    <div class="d-flex justify-content-between align-items-center mb-2 device-status" data-device-id="{{ device_stat.device.id }}">
+                        <div>
+                            <strong>{{ device_stat.device.name }}</strong>
+                            <br>
+                            <small class="text-muted">{{ device_stat.device.ip_address }}</small>
+                            {% if device_stat.device.online_status %}
+                            <br>
+                            <small>
+                                <i class="fas fa-users text-primary"></i> {{ device_stat.user_count }}
+                                <i class="fas fa-fingerprint text-info"></i> {{ device_stat.template_count }}
+                                <i class="fas fa-face-smile text-warning"></i> {{ device_stat.face_count }}
+                                <i class="fas fa-list text-success"></i> {{ device_stat.log_count }}
+                            </small>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <span class="badge bg-{{ 'success' if device_stat.device.online_status else 'danger' }}">
+                                {{ 'Online' if device_stat.device.online_status else 'Offline' }}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-clock me-2"></i>
+                    Recent Attendance Logs
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for log in recent_logs %}
+                            <tr>
+                                <td>{{ log.user_id }}</td>
+                                <td>{{ log.timestamp.strftime('%m/%d %H:%M') if log.timestamp else 'N/A' }}</td>
+                                <td>
+                                    <span class="badge bg-{{ 'success' if log.status and 'In' in log.status else 'warning' }}">
+                                        {{ log.status or 'Unknown' }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Attendance Chart
+const ctx = document.getElementById('attendanceChart').getContext('2d');
+const attendanceChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Today', 'Yesterday'],
+        datasets: [{
+            label: 'Attendance Logs',
+            data: [{{ stats.today_logs }}, {{ stats.yesterday_logs }}],
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
+    }
+});
+
+// Initialize Socket.IO connection
+const socket = io();
+
+// Handle connection events
+socket.on('connect', function() {
+    console.log('Connected to server');
+    // Request initial device status
+    socket.emit('request_device_status');
+});
+
+// Handle device status updates
+socket.on('device_status_update', function(data) {
+    updateDeviceStatusDisplay(data.devices);
+});
+
+// Handle errors
+socket.on('error', function(data) {
+    console.error('Socket error:', data.message);
+});
+
+function updateDeviceStatusDisplay(devices) {
+    devices.forEach(device => {
+        const statusElement = document.querySelector(`[data-device-id="${device.id}"] .badge`);
+        if (statusElement) {
+            statusElement.className = `badge bg-${device.online_status ? 'success' : 'danger'}`;
+            statusElement.textContent = device.online_status ? 'Online' : 'Offline';
+        }
+    });
+}
+
+// Manual refresh button
+document.getElementById('refreshStatus').addEventListener('click', function() {
+    socket.emit('request_device_status');
+});
+</script>
+{% endblock %}

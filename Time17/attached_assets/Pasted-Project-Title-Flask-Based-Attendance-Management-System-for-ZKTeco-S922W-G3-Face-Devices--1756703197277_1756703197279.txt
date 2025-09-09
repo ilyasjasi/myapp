@@ -1,0 +1,164 @@
+Project Title
+Flask-Based Attendance Management System for ZKTeco S922W & G3 Face Devices
+________________________________________
+Objective
+Develop a Python Flask-based application to manage and synchronize attendance logs from ZKTeco S922W and G3 Face biometric devices. The system should enable real-time monitoring, device management, employee data synchronization, and automated CSV exports, all stored and managed via an SQLite database.
+________________________________________
+Functional Requirements
+1. Device Management
+•	Add, Edit, Delete device records using modal dialogs.
+•	Store device details in SQLite:
+o	device_id, device_name, IP_address, MAC_address, area, last_sync, etc.
+•	On Device :
+o	Fetch IP and MAC.
+o	Trigger silent beep on the device.
+o	Retrieve: Total Logs, Face Count, Fingerprint Count.
+o	Display Online/Offline status dynamically on the dashboard.
+o	Edit Device Details
+2. Attendance Logs Management
+•	Automatically retrieve new logs once device is connected.
+•	Store logs in attendance_logs table:
+log_id, user_id, timestamp, status, device_id, exported_flag.
+•	Export logs as compiled CSV (ZKHours.csv) every 30 minutes:
+o	Append to file if it already exists.
+o	Only export unexported records, then mark them as exported.
+o	Destination location is configurable via a Settings Page.
+3. Employee Master Management
+•	Daily scheduled script:
+o	Fetch active employees from a centralized source and update the local users table.
+o	Read CSV (from another defined location) that contains terminated employees.
+o	Destination location is configurable via a Settings Page.
+o	Mark corresponding users in DB as inactive.
+o	Delete all inactive users from all connected devices.
+•	application User Management
+•	Employee registration and management
+•	Biometric and face template management
+•	area-based access control
+4. Dashboard Overview
+•	Display widgets for:
+o	Total logs (global/device-wise)
+o	Total Unique Face count, Unique Fingerprint template count
+o	Today's Logs
+o	Yesterday's Logs
+•	Live updates using JavaScript polling or WebSockets (optional).
+5. Device Actions
+•	Refresh logs per device (on-demand).
+•	Sync date & time to all connected devices.
+•	Live sync: push user data, face templates, and fingerprints in real-time and collect logs.
+6. Data Synchronization
+•	Bi-directional sync between devices and database:
+o	Sync user details, fingerprint templates, face templates, and user photos by assigned by area device to users.
+o	Avoid duplications — use user_id as the unique identifier.
+o	Maintain sync integrity across multiple devices in the network.
+o	If templates not store possible, then sync templates between connected devices
+________________________________________
+Database Schema (SQLite)
+Tables:
+class Area(db.Model):
+    __tablename__ = 'areas'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True, nullable=False)
+
+    devices = db.relationship('Device', backref='area_obj', lazy='dynamic')
+    users = db.relationship('User', backref='area_obj', lazy='dynamic')
+
+    def __repr__(self):
+        return f"<Area {self.name}>"
+
+class Device(db.Model):
+    __tablename__ = 'devices'
+    id = db.Column(db.Integer, primary_key=True)
+    device_id = db.Column(db.String(64), unique=True, nullable=False)
+    name = db.Column(db.String(128))
+    ip_address = db.Column(db.String(64))
+    mac_address = db.Column(db.String(64))
+    serialnumber = db.Column(db.String(64))
+    last_sync = db.Column(db.DateTime)
+    online_status = db.Column(db.Boolean, default=False)
+
+    area_id = db.Column(db.Integer, db.ForeignKey('areas.id'))
+
+    def __repr__(self):
+        return f"<Device {self.name} ({self.ip_address})>"
+
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(64), unique=True, nullable=False)
+    first_name = db.Column(db.String(64))
+    last_name = db.Column(db.String(64))
+    job_description = db.Column(db.String(128))
+    status = db.Column(db.String(32), default='Active')  # Active/Terminated
+
+    area_id = db.Column(db.Integer, db.ForeignKey('areas.id'))
+
+    finger_template = db.Column(db.LargeBinary)
+    face_template = db.Column(db.LargeBinary)
+    image = db.Column(db.LargeBinary)
+
+    # relationships for templates
+    fingerprints = db.relationship('FingerTemplate', backref='user', lazy='dynamic')
+    faces = db.relationship('FaceTemplate', backref='user', lazy='dynamic')
+    images = db.relationship('UserImage', backref='user', lazy='dynamic')
+
+    logs = db.relationship('AttendanceLog', backref='user', lazy='dynamic')
+
+    def __repr__(self):
+        return f"<User {self.user_id} {self.first_name} {self.last_name}>"
+
+class AttendanceLog(db.Model):
+    __tablename__ = 'attendance_logs'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(64), db.ForeignKey('users.user_id'))
+    device_id = db.Column(db.String(64))
+    area = db.Column(db.String(64))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    status = db.Column(db.String(32))
+    exported_flag = db.Column(db.Boolean, default=False)
+
+    def __repr__(self):
+        return f"<AttendanceLog {self.user_id} {self.timestamp}>"
+
+from flask_login import UserMixin
+
+class FingerTemplate(db.Model):
+    __tablename__ = 'finger_templates'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(64), db.ForeignKey('users.user_id'), index=True)
+    fid = db.Column(db.Integer)  # finger index 0-9
+    template = db.Column(db.LargeBinary)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class FaceTemplate(db.Model):
+    __tablename__ = 'face_templates'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(64), db.ForeignKey('users.user_id'), index=True)
+    template = db.Column(db.LargeBinary)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class UserImage(db.Model):
+    __tablename__ = 'user_images'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(64), db.ForeignKey('users.user_id'), index=True)
+    image = db.Column(db.LargeBinary)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class AppSetting(db.Model):
+    __tablename__ = 'app_settings'
+    key = db.Column(db.String(64), primary_key=True)
+    value = db.Column(db.String(256))
+
+    def __repr__(self):
+        return f"<AppSetting {self.key}={self.value}>"
+
+class AdminUser(UserMixin, db.Model):
+    __tablename__ = 'admin_users'
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), unique=True, nullable=False)
+    password_hash = db.Column(db.String(128))
+    force_change = db.Column(db.Boolean, default=True)
+
+    def __repr__(self):
+        return f"<AdminUser {self.username}>"
+
+
