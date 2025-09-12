@@ -1,0 +1,101 @@
+
+{% extends "base.html" %}
+
+{% block title %}Database Management{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Database Table Management</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="tablesTable">
+                            <thead>
+                                <tr>
+                                    <th>Table Name</th>
+                                    <th>Record Count</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablesTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function loadTables() {
+    fetch('/api/database/tables')
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.getElementById('tablesTableBody');
+            tbody.innerHTML = '';
+            
+            data.forEach(table => {
+                const row = `
+                    <tr>
+                        <td>${table.name}</td>
+                        <td>${table.count}</td>
+                        <td>
+                            <a href="/export/${table.name}" class="btn btn-sm btn-success">
+                                <i class="fas fa-file-excel"></i> Export
+                            </a>
+                            <button class="btn btn-sm btn-warning" onclick="clearTable('${table.name}')">
+                                <i class="fas fa-trash"></i> Clear
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        })
+        .catch(error => {
+            console.error('Error loading tables:', error);
+            showAlert('Error loading tables', 'error');
+        });
+}
+
+function clearTable(tableName) {
+    if (confirm(`Are you sure you want to clear all data from ${tableName} table?`)) {
+        fetch(`/api/database/clear/${tableName}`, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert(data.message, 'success');
+                loadTables();
+            } else {
+                showAlert(data.message, 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error clearing table:', error);
+            showAlert('Error clearing table', 'error');
+        });
+    }
+}
+
+function showAlert(message, type) {
+    const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+    const alertHtml = `
+        <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    document.querySelector('.container-fluid').insertAdjacentHTML('afterbegin', alertHtml);
+}
+
+// Load tables on page load
+document.addEventListener('DOMContentLoaded', loadTables);
+</script>
+{% endblock %}

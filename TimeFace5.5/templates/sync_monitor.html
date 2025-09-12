@@ -1,0 +1,441 @@
+{% extends "base.html" %}
+
+{% block title %}Sync Monitor - ZKTeco Attendance Management{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1>
+            <i class="fas fa-sync-alt me-2"></i>
+            Device Sync Monitor
+        </h1>
+    </div>
+</div>
+
+<!-- Sync Status Overview -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title" id="syncStatus">Idle</h4>
+                        <p class="card-text">Sync Status</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-sync-alt fa-2x" id="syncIcon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title" id="devicesCount">0</h4>
+                        <p class="card-text">Devices Synced</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-mobile-alt fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title" id="usersCount">0</h4>
+                        <p class="card-text">Users Synced</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="card-title" id="templatesCount">0</h4>
+                        <p class="card-text">Templates Synced</p>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-fingerprint fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Progress Bars -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chart-line me-2"></i>
+                    Sync Progress
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Overall Progress</label>
+                    <div class="progress">
+                        <div class="progress-bar" id="overallProgress" role="progressbar" style="width: 0%">0%</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Users Sync</label>
+                    <div class="progress">
+                        <div class="progress-bar bg-info" id="usersProgress" role="progressbar" style="width: 0%">0%
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fingerprint Templates</label>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" id="fingerprintProgress" role="progressbar"
+                            style="width: 0%">0%</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Face Templates</label>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" id="faceProgress" role="progressbar" style="width: 0%">0%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Current Activity -->
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-list me-2"></i>
+                    Current Activity
+                </h5>
+            </div>
+            <div class="card-body">
+                <div id="currentActivity" style="height: 300px; overflow-y: auto;">
+                    <p class="text-muted">No sync activity currently running...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-clock me-2"></i>
+                    Sync Statistics
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <strong>Last Sync:</strong>
+                    <p id="lastSyncTime" class="text-muted">Never</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Duration:</strong>
+                    <p id="syncDuration" class="text-muted">-</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Face Templates:</strong>
+                    <p id="faceTemplatesCount" class="text-muted">0</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Photos:</strong>
+                    <p id="photosCount" class="text-muted">0</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Users Added:</strong>
+                    <p id="usersAddedCount" class="text-success">0</p>
+                </div>
+                <div class="mb-3">
+                    <strong>Users Removed:</strong>
+                    <p id="usersRemovedCount" class="text-danger">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Manual Controls -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-play me-2"></i>
+                    Manual Sync Controls
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <button class="btn btn-primary w-100" onclick="startEnhancedSync()" id="enhancedSyncBtn">
+                            <i class="fas fa-rocket me-1"></i>
+                            Start Enhanced Sync
+                        </button>
+                        <small class="form-text">Full sync with face templates and photos</small>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <button class="btn btn-info w-100" onclick="startBasicSync()" id="basicSyncBtn">
+                            <i class="fas fa-sync me-1"></i>
+                            Start Basic Sync
+                        </button>
+                        <small class="form-text">Users and fingerprint templates only</small>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <button class="btn btn-danger w-100" onclick="stopSync()" id="stopSyncBtn" disabled>
+                            <i class="fas fa-stop me-1"></i>
+                            Stop Sync
+                        </button>
+                        <small class="form-text">Cancel current sync operation</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let syncMonitorInterval;
+    let syncStartTime;
+    let isMonitoring = false;
+
+    // Start monitoring when page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        startMonitoring();
+    });
+
+    function startMonitoring() {
+        if (isMonitoring) return;
+
+        isMonitoring = true;
+        syncMonitorInterval = setInterval(checkSyncStatus, 2000); // Check every 2 seconds
+        console.log('Sync monitoring started');
+    }
+
+    function stopMonitoring() {
+        if (syncMonitorInterval) {
+            clearInterval(syncMonitorInterval);
+            isMonitoring = false;
+            console.log('Sync monitoring stopped');
+        }
+    }
+
+    function checkSyncStatus() {
+        fetch('/api/sync/status')
+            .then(response => response.json())
+            .then(data => {
+                updateSyncDisplay(data);
+            })
+            .catch(error => {
+                console.error('Error checking sync status:', error);
+            });
+    }
+
+    function updateSyncDisplay(data) {
+        // Update status
+        const statusElement = document.getElementById('syncStatus');
+        const iconElement = document.getElementById('syncIcon');
+
+        if (data.is_syncing) {
+            statusElement.textContent = 'Syncing...';
+            iconElement.className = 'fas fa-sync-alt fa-2x fa-spin';
+
+            if (!syncStartTime) {
+                syncStartTime = new Date();
+            }
+
+            // Enable stop button, disable start buttons
+            document.getElementById('stopSyncBtn').disabled = false;
+            document.getElementById('enhancedSyncBtn').disabled = true;
+            document.getElementById('basicSyncBtn').disabled = true;
+        } else {
+            statusElement.textContent = 'Idle';
+            iconElement.className = 'fas fa-sync-alt fa-2x';
+
+            if (syncStartTime) {
+                syncStartTime = null;
+            }
+
+            // Disable stop button, enable start buttons
+            document.getElementById('stopSyncBtn').disabled = true;
+            document.getElementById('enhancedSyncBtn').disabled = false;
+            document.getElementById('basicSyncBtn').disabled = false;
+        }
+
+        // Update counters
+        document.getElementById('devicesCount').textContent = data.synced_devices || 0;
+        document.getElementById('usersCount').textContent = data.users_synced || 0;
+        document.getElementById('templatesCount').textContent = data.templates_synced || 0;
+        document.getElementById('faceTemplatesCount').textContent = data.face_templates_synced || 0;
+        document.getElementById('photosCount').textContent = data.photos_synced || 0;
+        document.getElementById('usersAddedCount').textContent = data.users_added || 0;
+        document.getElementById('usersRemovedCount').textContent = data.users_removed || 0;
+
+        // Update progress bars
+        const overallProgress = data.overall_progress || 0;
+        const usersProgress = data.users_progress || 0;
+        const fingerprintProgress = data.fingerprint_progress || 0;
+        const faceProgress = data.face_progress || 0;
+
+        updateProgressBar('overallProgress', overallProgress);
+        updateProgressBar('usersProgress', usersProgress);
+        updateProgressBar('fingerprintProgress', fingerprintProgress);
+        updateProgressBar('faceProgress', faceProgress);
+
+        // Update activity log
+        if (data.current_activity && data.current_activity.length > 0) {
+            updateActivityLog(data.current_activity);
+        }
+
+        // Update last sync time
+        if (data.last_sync_time) {
+            document.getElementById('lastSyncTime').textContent = data.last_sync_time;
+        }
+
+        // Update duration
+        if (syncStartTime && data.is_syncing) {
+            const duration = Math.floor((new Date() - syncStartTime) / 1000);
+            const minutes = Math.floor(duration / 60);
+            const seconds = duration % 60;
+            document.getElementById('syncDuration').textContent = `${minutes}m ${seconds}s`;
+        } else if (data.sync_duration) {
+            document.getElementById('syncDuration').textContent = data.sync_duration;
+        }
+    }
+
+    function updateProgressBar(elementId, progress) {
+        const progressBar = document.getElementById(elementId);
+        progressBar.style.width = progress + '%';
+        progressBar.textContent = Math.round(progress) + '%';
+    }
+
+    function updateActivityLog(activities) {
+        const activityDiv = document.getElementById('currentActivity');
+        let html = '';
+
+        activities.slice(-20).forEach(activity => { // Show last 20 activities
+            const timestamp = new Date(activity.timestamp).toLocaleTimeString();
+            const statusClass = activity.type === 'error' ? 'text-danger' :
+                activity.type === 'warning' ? 'text-warning' :
+                    activity.type === 'success' ? 'text-success' : 'text-info';
+
+            html += `<div class="mb-1">
+            <small class="text-muted">[${timestamp}]</small>
+            <span class="${statusClass}">${activity.message}</span>
+        </div>`;
+        });
+
+        activityDiv.innerHTML = html;
+        activityDiv.scrollTop = activityDiv.scrollHeight; // Auto-scroll to bottom
+    }
+
+    function startEnhancedSync() {
+        const button = document.getElementById('enhancedSyncBtn');
+        button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Starting...';
+        button.disabled = true;
+
+        fetch('/api/sync/enhanced', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Enhanced sync started successfully');
+                    // Reset button text - the monitoring function will handle the disabled state
+                    button.innerHTML = '<i class="fas fa-rocket me-1"></i>Start Enhanced Sync';
+                } else {
+                    alert('Failed to start enhanced sync: ' + data.message);
+                    button.innerHTML = '<i class="fas fa-rocket me-1"></i>Start Enhanced Sync';
+                    button.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error starting enhanced sync:', error);
+                alert('Error starting enhanced sync');
+                button.innerHTML = '<i class="fas fa-rocket me-1"></i>Start Enhanced Sync';
+                button.disabled = false;
+            });
+    }
+
+    function startBasicSync() {
+        const button = document.getElementById('basicSyncBtn');
+        button.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Starting...';
+        button.disabled = true;
+
+        fetch('/api/sync/basic', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Basic sync started successfully');
+                    // Reset button text - the monitoring function will handle the disabled state
+                    button.innerHTML = '<i class="fas fa-sync me-1"></i>Start Basic Sync';
+                } else {
+                    alert('Failed to start basic sync: ' + data.message);
+                    button.innerHTML = '<i class="fas fa-sync me-1"></i>Start Basic Sync';
+                    button.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error starting basic sync:', error);
+                alert('Error starting basic sync');
+                button.innerHTML = '<i class="fas fa-sync me-1"></i>Start Basic Sync';
+                button.disabled = false;
+            });
+    }
+
+    function stopSync() {
+        fetch('/api/sync/stop', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('Sync stopped successfully');
+                } else {
+                    alert('Failed to stop sync: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error stopping sync:', error);
+                alert('Error stopping sync');
+            });
+    }
+
+    // Clean up when page is unloaded
+    window.addEventListener('beforeunload', function () {
+        stopMonitoring();
+    });
+</script>
+{% endblock %}

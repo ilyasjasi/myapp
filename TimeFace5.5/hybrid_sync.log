@@ -1,0 +1,366 @@
+2025-09-11 11:24:24,259 - INFO - Starting hybrid sync with 2 devices
+2025-09-11 11:24:24,259 - INFO - Step 1: Detecting device capabilities...
+2025-09-11 11:24:26,697 - INFO - pyzk: 192.168.41.212 compatible, 1290 users, face version 7
+2025-09-11 11:24:30,566 - INFO - fpmachine: 192.168.41.212 compatible with ZMM220_TFT
+2025-09-11 11:24:30,567 - INFO - 192.168.41.212: pyzk=True, fpmachine=True, face_support=True
+2025-09-11 11:24:30,848 - INFO - pyzk: 192.168.41.205 compatible, 161 users, face version 7
+2025-09-11 11:24:31,251 - INFO - fpmachine: 192.168.41.205 compatible with ZMM220_TFT
+2025-09-11 11:24:31,262 - INFO - 192.168.41.205: pyzk=True, fpmachine=True, face_support=True
+2025-09-11 11:24:31,262 - INFO - Step 2: Connecting to devices...
+2025-09-11 11:24:32,475 - INFO - Step 3: Syncing users and fingerprints...
+2025-09-11 11:24:32,482 - INFO - Starting device sync with 2 devices
+2025-09-11 11:24:32,482 - INFO - Connecting to 192.168.41.212...
+2025-09-11 11:24:33,213 - INFO - Connected to 192.168.41.212
+2025-09-11 11:24:33,214 - INFO - Connecting to 192.168.41.205...
+2025-09-11 11:24:33,496 - INFO - Connected to 192.168.41.205
+2025-09-11 11:24:33,496 - INFO - Fetching data from 192.168.41.212...
+2025-09-11 11:24:35,266 - INFO - Found 1290 users in 1.77 seconds
+2025-09-11 11:24:45,418 - INFO - Found 1833 fingerprint templates for 1161 users in 10.15 seconds
+2025-09-11 11:24:45,881 - INFO - Completed data fetch from 192.168.41.212 in 12.39 seconds
+2025-09-11 11:24:45,882 - INFO - Fetching data from 192.168.41.205...
+2025-09-11 11:24:46,322 - INFO - Found 161 users in 0.44 seconds
+2025-09-11 11:24:47,929 - INFO - Found 243 fingerprint templates for 150 users in 1.61 seconds
+2025-09-11 11:24:48,013 - INFO - Completed data fetch from 192.168.41.205 in 2.13 seconds
+2025-09-11 11:24:48,014 - INFO - Primary device: 192.168.41.212 with 1290 users and 1833 templates
+2025-09-11 11:24:48,015 - INFO - Adding 1129 users from 192.168.41.212 to 192.168.41.205
+2025-09-11 11:24:49,221 - INFO - Synced 1 fingerprint templates for user 2364
+2025-09-11 11:24:49,222 - INFO - Added user 2364 to 192.168.41.205 with UID 171
+2025-09-11 11:24:50,583 - INFO - Synced 2 fingerprint templates for user 21333
+2025-09-11 11:24:50,584 - INFO - Added user 21333 to 192.168.41.205 with UID 172
+2025-09-11 11:24:51,654 - INFO - Synced 1 fingerprint templates for user 200460
+2025-09-11 11:24:51,655 - INFO - Added user 200460 to 192.168.41.205 with UID 173
+2025-09-11 11:24:51,822 - INFO - Added user 218256 to 192.168.41.205 with UID 174
+2025-09-11 11:24:52,965 - INFO - Synced 1 fingerprint templates for user 49301
+2025-09-11 11:24:52,966 - INFO - Added user 49301 to 192.168.41.205 with UID 175
+2025-09-11 11:24:54,084 - INFO - Synced 1 fingerprint templates for user 1904
+2025-09-11 11:24:54,084 - INFO - Added user 1904 to 192.168.41.205 with UID 176
+2025-09-11 11:24:55,213 - INFO - Synced 1 fingerprint templates for user 222087
+2025-09-11 11:24:55,213 - INFO - Added user 222087 to 192.168.41.205 with UID 177
+2025-09-11 11:24:56,335 - INFO - Synced 1 fingerprint templates for user 200469
+2025-09-11 11:24:56,336 - INFO - Added user 200469 to 192.168.41.205 with UID 179
+2025-09-11 11:24:57,386 - INFO - Synced 1 fingerprint templates for user 165008
+2025-09-11 11:24:57,386 - INFO - Added user 165008 to 192.168.41.205 with UID 180
+2025-09-11 11:24:57,542 - INFO - Added user 55015 to 192.168.41.205 with UID 181
+2025-09-11 11:24:58,885 - INFO - Synced 2 fingerprint templates for user 202963
+2025-09-11 11:24:58,886 - INFO - Added user 202963 to 192.168.41.205 with UID 182
+2025-09-11 11:25:00,525 - INFO - Synced 3 fingerprint templates for user 10788
+2025-09-11 11:25:00,526 - INFO - Added user 10788 to 192.168.41.205 with UID 183
+2025-09-11 11:25:01,633 - INFO - Synced 1 fingerprint templates for user 203018
+2025-09-11 11:25:01,633 - INFO - Added user 203018 to 192.168.41.205 with UID 184
+2025-09-11 11:25:02,735 - INFO - Synced 1 fingerprint templates for user 218278
+2025-09-11 11:25:02,736 - INFO - Added user 218278 to 192.168.41.205 with UID 185
+2025-09-11 11:25:03,808 - INFO - Synced 1 fingerprint templates for user 157072
+2025-09-11 11:25:03,809 - INFO - Added user 157072 to 192.168.41.205 with UID 186
+2025-09-11 11:25:05,181 - INFO - Synced 2 fingerprint templates for user 222142
+2025-09-11 11:25:05,181 - INFO - Added user 222142 to 192.168.41.205 with UID 187
+2025-09-11 11:25:06,264 - INFO - Synced 1 fingerprint templates for user 218272
+2025-09-11 11:25:06,265 - INFO - Added user 218272 to 192.168.41.205 with UID 188
+2025-09-11 11:25:07,386 - INFO - Synced 1 fingerprint templates for user 218273
+2025-09-11 11:25:07,386 - INFO - Added user 218273 to 192.168.41.205 with UID 189
+2025-09-11 11:25:08,513 - INFO - Synced 1 fingerprint templates for user 155178
+2025-09-11 11:25:08,514 - INFO - Added user 155178 to 192.168.41.205 with UID 190
+2025-09-11 11:25:09,900 - INFO - Synced 2 fingerprint templates for user 7413
+2025-09-11 11:25:09,901 - INFO - Added user 7413 to 192.168.41.205 with UID 191
+2025-09-11 11:25:11,267 - INFO - Synced 2 fingerprint templates for user 54426
+2025-09-11 11:25:11,268 - INFO - Added user 54426 to 192.168.41.205 with UID 192
+2025-09-11 11:25:12,353 - INFO - Synced 1 fingerprint templates for user 45317
+2025-09-11 11:25:12,354 - INFO - Added user 45317 to 192.168.41.205 with UID 193
+2025-09-11 11:25:12,477 - INFO - Added user 220010 to 192.168.41.205 with UID 194
+2025-09-11 11:25:13,567 - INFO - Synced 1 fingerprint templates for user 160851
+2025-09-11 11:25:13,567 - INFO - Added user 160851 to 192.168.41.205 with UID 195
+2025-09-11 11:25:13,754 - INFO - Added user 206294 to 192.168.41.205 with UID 196
+2025-09-11 11:25:14,837 - INFO - Synced 1 fingerprint templates for user 56750
+2025-09-11 11:25:14,838 - INFO - Added user 56750 to 192.168.41.205 with UID 199
+2025-09-11 11:25:16,169 - INFO - Synced 2 fingerprint templates for user 10198
+2025-09-11 11:25:16,170 - INFO - Added user 10198 to 192.168.41.205 with UID 201
+2025-09-11 11:25:17,278 - INFO - Synced 1 fingerprint templates for user 223828
+2025-09-11 11:25:17,279 - INFO - Added user 223828 to 192.168.41.205 with UID 202
+2025-09-11 11:25:18,435 - INFO - Synced 1 fingerprint templates for user 223361
+2025-09-11 11:25:18,436 - INFO - Added user 223361 to 192.168.41.205 with UID 203
+2025-09-11 11:25:19,562 - INFO - Synced 1 fingerprint templates for user 214441
+2025-09-11 11:25:19,562 - INFO - Added user 214441 to 192.168.41.205 with UID 204
+2025-09-11 11:25:20,892 - INFO - Synced 2 fingerprint templates for user 11463
+2025-09-11 11:25:20,893 - INFO - Added user 11463 to 192.168.41.205 with UID 205
+2025-09-11 11:25:22,202 - INFO - Synced 2 fingerprint templates for user 210921
+2025-09-11 11:25:22,202 - INFO - Added user 210921 to 192.168.41.205 with UID 206
+2025-09-11 11:25:23,558 - INFO - Synced 2 fingerprint templates for user 221750
+2025-09-11 11:25:23,559 - INFO - Added user 221750 to 192.168.41.205 with UID 207
+2025-09-11 11:25:24,814 - INFO - Synced 2 fingerprint templates for user 202315
+2025-09-11 11:25:24,814 - INFO - Added user 202315 to 192.168.41.205 with UID 208
+2025-09-11 11:25:25,935 - INFO - Synced 1 fingerprint templates for user 151990
+2025-09-11 11:25:25,936 - INFO - Added user 151990 to 192.168.41.205 with UID 209
+2025-09-11 11:25:26,992 - INFO - Synced 1 fingerprint templates for user 202707
+2025-09-11 11:25:26,993 - INFO - Added user 202707 to 192.168.41.205 with UID 210
+2025-09-11 11:25:27,121 - INFO - Added user 223591 to 192.168.41.205 with UID 211
+2025-09-11 11:25:28,748 - INFO - Synced 3 fingerprint templates for user 10562
+2025-09-11 11:25:28,748 - INFO - Added user 10562 to 192.168.41.205 with UID 212
+2025-09-11 11:25:30,389 - INFO - Synced 3 fingerprint templates for user 222656
+2025-09-11 11:25:30,391 - INFO - Added user 222656 to 192.168.41.205 with UID 213
+2025-09-11 11:25:31,477 - INFO - Synced 1 fingerprint templates for user 208435
+2025-09-11 11:25:31,478 - INFO - Added user 208435 to 192.168.41.205 with UID 214
+2025-09-11 11:25:32,545 - INFO - Synced 1 fingerprint templates for user 156825
+2025-09-11 11:25:32,546 - INFO - Added user 156825 to 192.168.41.205 with UID 215
+2025-09-11 11:25:34,157 - INFO - Synced 3 fingerprint templates for user 152042
+2025-09-11 11:25:34,158 - INFO - Added user 152042 to 192.168.41.205 with UID 216
+2025-09-11 11:25:35,278 - INFO - Synced 1 fingerprint templates for user 218989
+2025-09-11 11:25:35,279 - INFO - Added user 218989 to 192.168.41.205 with UID 217
+2025-09-11 11:25:36,317 - INFO - Synced 1 fingerprint templates for user 52625
+2025-09-11 11:25:36,318 - INFO - Added user 52625 to 192.168.41.205 with UID 218
+2025-09-11 11:25:37,394 - INFO - Synced 1 fingerprint templates for user 152041
+2025-09-11 11:25:37,394 - INFO - Added user 152041 to 192.168.41.205 with UID 219
+2025-09-11 11:25:38,821 - INFO - Synced 1 fingerprint templates for user 217729
+2025-09-11 11:25:38,822 - INFO - Added user 217729 to 192.168.41.205 with UID 220
+2025-09-11 11:25:40,202 - INFO - Synced 1 fingerprint templates for user 203266
+2025-09-11 11:25:40,203 - INFO - Added user 203266 to 192.168.41.205 with UID 221
+2025-09-11 11:25:42,562 - INFO - Synced 4 fingerprint templates for user 216708
+2025-09-11 11:25:42,563 - INFO - Added user 216708 to 192.168.41.205 with UID 222
+2025-09-11 11:25:43,843 - INFO - Synced 1 fingerprint templates for user 222163
+2025-09-11 11:25:43,844 - INFO - Added user 222163 to 192.168.41.205 with UID 223
+2025-09-11 11:25:45,003 - INFO - Synced 1 fingerprint templates for user 10844
+2025-09-11 11:25:45,004 - INFO - Added user 10844 to 192.168.41.205 with UID 224
+2025-09-11 11:25:46,135 - INFO - Synced 1 fingerprint templates for user 201169
+2025-09-11 11:25:46,136 - INFO - Added user 201169 to 192.168.41.205 with UID 225
+2025-09-11 11:25:47,235 - INFO - Synced 1 fingerprint templates for user 201001
+2025-09-11 11:25:47,236 - INFO - Added user 201001 to 192.168.41.205 with UID 226
+2025-09-11 11:25:48,399 - INFO - Synced 1 fingerprint templates for user 223925
+2025-09-11 11:25:48,400 - INFO - Added user 223925 to 192.168.41.205 with UID 229
+2025-09-11 11:25:49,629 - INFO - Synced 1 fingerprint templates for user 223926
+2025-09-11 11:25:49,630 - INFO - Added user 223926 to 192.168.41.205 with UID 230
+2025-09-11 11:25:50,763 - INFO - Synced 1 fingerprint templates for user 223927
+2025-09-11 11:25:50,763 - INFO - Added user 223927 to 192.168.41.205 with UID 231
+2025-09-11 11:25:51,926 - INFO - Synced 1 fingerprint templates for user 13889
+2025-09-11 11:25:51,926 - INFO - Added user 13889 to 192.168.41.205 with UID 232
+2025-09-11 11:25:53,054 - INFO - Synced 1 fingerprint templates for user 223921
+2025-09-11 11:25:53,055 - INFO - Added user 223921 to 192.168.41.205 with UID 233
+2025-09-11 11:25:54,181 - INFO - Synced 1 fingerprint templates for user 223923
+2025-09-11 11:25:54,181 - INFO - Added user 223923 to 192.168.41.205 with UID 234
+2025-09-11 11:25:55,328 - INFO - Synced 1 fingerprint templates for user 210135
+2025-09-11 11:25:55,328 - INFO - Added user 210135 to 192.168.41.205 with UID 235
+2025-09-11 11:25:56,411 - INFO - Synced 1 fingerprint templates for user 214296
+2025-09-11 11:25:56,412 - INFO - Added user 214296 to 192.168.41.205 with UID 236
+2025-09-11 11:25:57,858 - INFO - Synced 2 fingerprint templates for user 155210
+2025-09-11 11:25:57,859 - INFO - Added user 155210 to 192.168.41.205 with UID 239
+2025-09-11 11:26:00,040 - INFO - Synced 5 fingerprint templates for user 1462
+2025-09-11 11:26:00,040 - INFO - Added user 1462 to 192.168.41.205 with UID 240
+2025-09-11 11:26:01,550 - INFO - Synced 1 fingerprint templates for user 216842
+2025-09-11 11:26:01,550 - INFO - Added user 216842 to 192.168.41.205 with UID 241
+2025-09-11 11:26:03,146 - INFO - Synced 1 fingerprint templates for user 155214
+2025-09-11 11:26:03,146 - INFO - Added user 155214 to 192.168.41.205 with UID 242
+2025-09-11 11:26:04,777 - INFO - Synced 1 fingerprint templates for user 215513
+2025-09-11 11:26:04,778 - INFO - Added user 215513 to 192.168.41.205 with UID 243
+2025-09-11 11:26:05,043 - INFO - Added user 275 to 192.168.41.205 with UID 244
+2025-09-11 11:26:06,557 - INFO - Synced 1 fingerprint templates for user 32307
+2025-09-11 11:26:06,558 - INFO - Added user 32307 to 192.168.41.205 with UID 245
+2025-09-11 11:26:07,755 - INFO - Synced 1 fingerprint templates for user 32727
+2025-09-11 11:26:07,756 - INFO - Added user 32727 to 192.168.41.205 with UID 246
+2025-09-11 11:26:07,909 - INFO - Added user 743 to 192.168.41.205 with UID 247
+2025-09-11 11:26:09,029 - INFO - Synced 1 fingerprint templates for user 202145
+2025-09-11 11:26:09,029 - INFO - Added user 202145 to 192.168.41.205 with UID 248
+2025-09-11 11:26:10,168 - INFO - Synced 1 fingerprint templates for user 217561
+2025-09-11 11:26:10,169 - INFO - Added user 217561 to 192.168.41.205 with UID 249
+2025-09-11 11:26:11,402 - INFO - Synced 1 fingerprint templates for user 17611
+2025-09-11 11:26:11,402 - INFO - Added user 17611 to 192.168.41.205 with UID 250
+2025-09-11 11:26:12,599 - INFO - Synced 1 fingerprint templates for user 56659
+2025-09-11 11:26:12,599 - INFO - Added user 56659 to 192.168.41.205 with UID 251
+2025-09-11 11:26:13,736 - INFO - Synced 1 fingerprint templates for user 162956
+2025-09-11 11:26:13,736 - INFO - Added user 162956 to 192.168.41.205 with UID 252
+2025-09-11 11:26:15,177 - INFO - Synced 2 fingerprint templates for user 218923
+2025-09-11 11:26:15,177 - INFO - Added user 218923 to 192.168.41.205 with UID 253
+2025-09-11 11:26:16,840 - INFO - Synced 3 fingerprint templates for user 201189
+2025-09-11 11:26:16,841 - INFO - Added user 201189 to 192.168.41.205 with UID 254
+2025-09-11 11:26:18,043 - INFO - Synced 1 fingerprint templates for user 214166
+2025-09-11 11:26:18,044 - INFO - Added user 214166 to 192.168.41.205 with UID 255
+2025-09-11 11:26:19,492 - INFO - Synced 2 fingerprint templates for user 15669
+2025-09-11 11:26:19,493 - INFO - Added user 15669 to 192.168.41.205 with UID 256
+2025-09-11 11:26:20,991 - INFO - Synced 2 fingerprint templates for user 49441
+2025-09-11 11:26:20,992 - INFO - Added user 49441 to 192.168.41.205 with UID 257
+2025-09-11 11:26:21,973 - INFO - Synced 1 fingerprint templates for user 48735
+2025-09-11 11:26:21,974 - INFO - Added user 48735 to 192.168.41.205 with UID 258
+2025-09-11 11:26:23,616 - INFO - Synced 3 fingerprint templates for user 216943
+2025-09-11 11:26:23,616 - INFO - Added user 216943 to 192.168.41.205 with UID 259
+2025-09-11 11:26:23,736 - INFO - Added user 9125 to 192.168.41.205 with UID 261
+2025-09-11 11:26:23,858 - INFO - Added user 217869 to 192.168.41.205 with UID 262
+2025-09-11 11:26:24,021 - INFO - Added user 59103 to 192.168.41.205 with UID 263
+2025-09-11 11:26:25,097 - INFO - Synced 1 fingerprint templates for user 223600
+2025-09-11 11:26:25,098 - INFO - Added user 223600 to 192.168.41.205 with UID 264
+2025-09-11 11:26:26,158 - INFO - Synced 1 fingerprint templates for user 222091
+2025-09-11 11:26:26,159 - INFO - Added user 222091 to 192.168.41.205 with UID 266
+2025-09-11 11:26:27,788 - INFO - Synced 3 fingerprint templates for user 216411
+2025-09-11 11:26:27,788 - INFO - Added user 216411 to 192.168.41.205 with UID 267
+2025-09-11 11:26:28,834 - INFO - Synced 1 fingerprint templates for user 160179
+2025-09-11 11:26:28,835 - INFO - Added user 160179 to 192.168.41.205 with UID 268
+2025-09-11 11:26:29,957 - INFO - Synced 1 fingerprint templates for user 164851
+2025-09-11 11:26:29,958 - INFO - Added user 164851 to 192.168.41.205 with UID 269
+2025-09-11 11:26:31,817 - INFO - Synced 4 fingerprint templates for user 2225
+2025-09-11 11:26:31,818 - INFO - Added user 2225 to 192.168.41.205 with UID 270
+2025-09-11 11:26:33,421 - INFO - Synced 1 fingerprint templates for user 212605
+2025-09-11 11:26:33,421 - INFO - Added user 212605 to 192.168.41.205 with UID 271
+2025-09-11 11:26:34,972 - INFO - Synced 1 fingerprint templates for user 11408
+2025-09-11 11:26:34,972 - INFO - Added user 11408 to 192.168.41.205 with UID 272
+2025-09-11 11:26:36,535 - INFO - Synced 1 fingerprint templates for user 223897
+2025-09-11 11:26:36,536 - INFO - Added user 223897 to 192.168.41.205 with UID 273
+2025-09-11 11:26:37,852 - INFO - Synced 1 fingerprint templates for user 215345
+2025-09-11 11:26:37,853 - INFO - Added user 215345 to 192.168.41.205 with UID 275
+2025-09-11 11:26:38,048 - INFO - Added user 164981 to 192.168.41.205 with UID 276
+2025-09-11 11:26:39,237 - INFO - Synced 1 fingerprint templates for user 10935
+2025-09-11 11:26:39,238 - INFO - Added user 10935 to 192.168.41.205 with UID 277
+2025-09-11 11:26:40,698 - INFO - Synced 2 fingerprint templates for user 10936
+2025-09-11 11:26:40,699 - INFO - Added user 10936 to 192.168.41.205 with UID 278
+2025-09-11 11:26:41,879 - INFO - Synced 1 fingerprint templates for user 214200
+2025-09-11 11:26:41,880 - INFO - Added user 214200 to 192.168.41.205 with UID 279
+2025-09-11 11:26:43,015 - INFO - Synced 1 fingerprint templates for user 51658
+2025-09-11 11:26:43,016 - INFO - Added user 51658 to 192.168.41.205 with UID 280
+2025-09-11 11:26:44,145 - INFO - Synced 1 fingerprint templates for user 206344
+2025-09-11 11:26:44,145 - INFO - Added user 206344 to 192.168.41.205 with UID 281
+2025-09-11 11:26:45,658 - INFO - Synced 2 fingerprint templates for user 217268
+2025-09-11 11:26:45,658 - INFO - Added user 217268 to 192.168.41.205 with UID 282
+2025-09-11 11:26:47,079 - INFO - Synced 2 fingerprint templates for user 618
+2025-09-11 11:26:47,080 - INFO - Added user 618 to 192.168.41.205 with UID 283
+2025-09-11 11:26:48,231 - INFO - Synced 1 fingerprint templates for user 155321
+2025-09-11 11:26:48,232 - INFO - Added user 155321 to 192.168.41.205 with UID 284
+2025-09-11 11:26:49,680 - INFO - Synced 2 fingerprint templates for user 153290
+2025-09-11 11:26:49,681 - INFO - Added user 153290 to 192.168.41.205 with UID 285
+2025-09-11 11:26:51,356 - INFO - Synced 3 fingerprint templates for user 12498
+2025-09-11 11:26:51,357 - INFO - Added user 12498 to 192.168.41.205 with UID 286
+2025-09-11 11:26:52,583 - INFO - Synced 1 fingerprint templates for user 223937
+2025-09-11 11:26:52,584 - INFO - Added user 223937 to 192.168.41.205 with UID 287
+2025-09-11 11:26:54,562 - INFO - Synced 3 fingerprint templates for user 616
+2025-09-11 11:26:54,563 - INFO - Added user 616 to 192.168.41.205 with UID 288
+2025-09-11 11:26:56,037 - INFO - Synced 1 fingerprint templates for user 217267
+2025-09-11 11:26:56,038 - INFO - Added user 217267 to 192.168.41.205 with UID 289
+2025-09-11 11:26:57,584 - INFO - Synced 1 fingerprint templates for user 200233
+2025-09-11 11:26:57,585 - INFO - Added user 200233 to 192.168.41.205 with UID 290
+2025-09-11 11:26:59,306 - INFO - Synced 2 fingerprint templates for user 205932
+2025-09-11 11:26:59,307 - INFO - Added user 205932 to 192.168.41.205 with UID 291
+2025-09-11 11:27:00,433 - INFO - Synced 1 fingerprint templates for user 208487
+2025-09-11 11:27:00,434 - INFO - Added user 208487 to 192.168.41.205 with UID 292
+2025-09-11 11:27:01,583 - INFO - Synced 1 fingerprint templates for user 14563
+2025-09-11 11:27:01,584 - INFO - Added user 14563 to 192.168.41.205 with UID 293
+2025-09-11 11:27:02,802 - INFO - Synced 1 fingerprint templates for user 164716
+2025-09-11 11:27:02,803 - INFO - Added user 164716 to 192.168.41.205 with UID 294
+2025-09-11 11:27:04,042 - INFO - Synced 1 fingerprint templates for user 202037
+2025-09-11 11:27:04,042 - INFO - Added user 202037 to 192.168.41.205 with UID 295
+2025-09-11 11:27:04,208 - INFO - Added user 54771 to 192.168.41.205 with UID 296
+2025-09-11 11:27:05,375 - INFO - Synced 1 fingerprint templates for user 208875
+2025-09-11 11:27:05,375 - INFO - Added user 208875 to 192.168.41.205 with UID 297
+2025-09-11 11:27:06,609 - INFO - Synced 1 fingerprint templates for user 7900
+2025-09-11 11:27:06,610 - INFO - Added user 7900 to 192.168.41.205 with UID 298
+2025-09-11 11:27:08,340 - INFO - Synced 3 fingerprint templates for user 34169
+2025-09-11 11:27:08,341 - INFO - Added user 34169 to 192.168.41.205 with UID 300
+2025-09-11 11:27:09,524 - INFO - Synced 1 fingerprint templates for user 18029
+2025-09-11 11:27:09,525 - INFO - Added user 18029 to 192.168.41.205 with UID 301
+2025-09-11 11:27:10,943 - INFO - Synced 2 fingerprint templates for user 204603
+2025-09-11 11:27:10,944 - INFO - Added user 204603 to 192.168.41.205 with UID 302
+2025-09-11 11:27:12,397 - INFO - Synced 2 fingerprint templates for user 222956
+2025-09-11 11:27:12,398 - INFO - Added user 222956 to 192.168.41.205 with UID 303
+2025-09-11 11:27:13,878 - INFO - Synced 2 fingerprint templates for user 1282
+2025-09-11 11:27:13,879 - INFO - Added user 1282 to 192.168.41.205 with UID 304
+2025-09-11 11:27:14,021 - INFO - Added user 54534 to 192.168.41.205 with UID 305
+2025-09-11 11:27:16,285 - INFO - Synced 5 fingerprint templates for user 151704
+2025-09-11 11:27:16,287 - INFO - Added user 151704 to 192.168.41.205 with UID 306
+2025-09-11 11:27:17,877 - INFO - Synced 1 fingerprint templates for user 211273
+2025-09-11 11:27:17,878 - INFO - Added user 211273 to 192.168.41.205 with UID 307
+2025-09-11 11:27:19,768 - INFO - Synced 2 fingerprint templates for user 222595
+2025-09-11 11:27:19,771 - INFO - Added user 222595 to 192.168.41.205 with UID 308
+2025-09-11 11:27:21,220 - INFO - Synced 1 fingerprint templates for user 201216
+2025-09-11 11:27:21,220 - INFO - Added user 201216 to 192.168.41.205 with UID 309
+2025-09-11 11:27:22,386 - INFO - Synced 1 fingerprint templates for user 213084
+2025-09-11 11:27:22,387 - INFO - Added user 213084 to 192.168.41.205 with UID 310
+2025-09-11 11:27:23,478 - INFO - Synced 1 fingerprint templates for user 213741
+2025-09-11 11:27:23,478 - INFO - Added user 213741 to 192.168.41.205 with UID 311
+2025-09-11 11:27:25,026 - INFO - Synced 2 fingerprint templates for user 1578
+2025-09-11 11:27:25,026 - INFO - Added user 1578 to 192.168.41.205 with UID 312
+2025-09-11 11:27:26,478 - INFO - Synced 2 fingerprint templates for user 219216
+2025-09-11 11:27:26,478 - INFO - Added user 219216 to 192.168.41.205 with UID 313
+2025-09-11 11:27:27,641 - INFO - Synced 1 fingerprint templates for user 200563
+2025-09-11 11:27:27,641 - INFO - Added user 200563 to 192.168.41.205 with UID 314
+2025-09-11 11:27:28,816 - INFO - Synced 1 fingerprint templates for user 203221
+2025-09-11 11:27:28,816 - INFO - Added user 203221 to 192.168.41.205 with UID 315
+2025-09-11 11:27:28,950 - INFO - Added user 200561 to 192.168.41.205 with UID 316
+2025-09-11 11:27:30,122 - INFO - Synced 1 fingerprint templates for user 7428
+2025-09-11 11:27:30,122 - INFO - Added user 7428 to 192.168.41.205 with UID 317
+2025-09-11 11:27:31,286 - INFO - Synced 1 fingerprint templates for user 205263
+2025-09-11 11:27:31,286 - INFO - Added user 205263 to 192.168.41.205 with UID 318
+2025-09-11 11:27:32,516 - INFO - Synced 1 fingerprint templates for user 8768
+2025-09-11 11:27:32,517 - INFO - Added user 8768 to 192.168.41.205 with UID 319
+2025-09-11 11:27:33,689 - INFO - Synced 1 fingerprint templates for user 45583
+2025-09-11 11:27:33,690 - INFO - Added user 45583 to 192.168.41.205 with UID 320
+2025-09-11 11:27:34,995 - INFO - Synced 1 fingerprint templates for user 104720
+2025-09-11 11:27:34,996 - INFO - Added user 104720 to 192.168.41.205 with UID 321
+2025-09-11 11:27:36,289 - INFO - Synced 1 fingerprint templates for user 200036
+2025-09-11 11:27:36,290 - INFO - Added user 200036 to 192.168.41.205 with UID 322
+2025-09-11 11:27:37,416 - INFO - Synced 1 fingerprint templates for user 47044
+2025-09-11 11:27:37,416 - INFO - Added user 47044 to 192.168.41.205 with UID 323
+2025-09-11 11:27:38,525 - INFO - Synced 1 fingerprint templates for user 214144
+2025-09-11 11:27:38,525 - INFO - Added user 214144 to 192.168.41.205 with UID 324
+2025-09-11 11:27:39,775 - INFO - Synced 1 fingerprint templates for user 9364
+2025-09-11 11:27:39,776 - INFO - Added user 9364 to 192.168.41.205 with UID 325
+2025-09-11 11:27:40,966 - INFO - Synced 1 fingerprint templates for user 212401
+2025-09-11 11:27:40,967 - INFO - Added user 212401 to 192.168.41.205 with UID 326
+2025-09-11 11:27:42,248 - INFO - Synced 1 fingerprint templates for user 158124
+2025-09-11 11:27:42,249 - INFO - Added user 158124 to 192.168.41.205 with UID 327
+2025-09-11 11:27:43,915 - INFO - Synced 1 fingerprint templates for user 218232
+2025-09-11 11:27:43,916 - INFO - Added user 218232 to 192.168.41.205 with UID 328
+2025-09-11 11:27:45,558 - INFO - Synced 1 fingerprint templates for user 218675
+2025-09-11 11:27:45,559 - INFO - Added user 218675 to 192.168.41.205 with UID 329
+2025-09-11 11:27:47,184 - INFO - Synced 1 fingerprint templates for user 218230
+2025-09-11 11:27:47,184 - INFO - Added user 218230 to 192.168.41.205 with UID 330
+2025-09-11 11:27:47,371 - INFO - Added user 222188 to 192.168.41.205 with UID 331
+2025-09-11 11:27:48,623 - INFO - Synced 1 fingerprint templates for user 7226
+2025-09-11 11:27:48,624 - INFO - Added user 7226 to 192.168.41.205 with UID 332
+2025-09-11 11:27:49,846 - INFO - Synced 1 fingerprint templates for user 218238
+2025-09-11 11:27:49,847 - INFO - Added user 218238 to 192.168.41.205 with UID 333
+2025-09-11 11:27:51,391 - INFO - Synced 2 fingerprint templates for user 34557
+2025-09-11 11:27:51,392 - INFO - Added user 34557 to 192.168.41.205 with UID 334
+2025-09-11 11:27:52,575 - INFO - Synced 1 fingerprint templates for user 159536
+2025-09-11 11:27:52,575 - INFO - Added user 159536 to 192.168.41.205 with UID 335
+2025-09-11 11:27:53,769 - INFO - Synced 1 fingerprint templates for user 223748
+2025-09-11 11:27:53,769 - INFO - Added user 223748 to 192.168.41.205 with UID 336
+2025-09-11 11:27:54,999 - INFO - Synced 1 fingerprint templates for user 10193
+2025-09-11 11:27:54,999 - INFO - Added user 10193 to 192.168.41.205 with UID 337
+2025-09-11 11:27:56,480 - INFO - Synced 2 fingerprint templates for user 217527
+2025-09-11 11:27:56,480 - INFO - Added user 217527 to 192.168.41.205 with UID 338
+2025-09-11 11:27:57,693 - INFO - Synced 1 fingerprint templates for user 7452
+2025-09-11 11:27:57,693 - INFO - Added user 7452 to 192.168.41.205 with UID 339
+2025-09-11 11:27:58,890 - INFO - Synced 1 fingerprint templates for user 1837
+2025-09-11 11:27:58,891 - INFO - Added user 1837 to 192.168.41.205 with UID 340
+2025-09-11 11:28:00,329 - INFO - Synced 2 fingerprint templates for user 207465
+2025-09-11 11:28:00,330 - INFO - Added user 207465 to 192.168.41.205 with UID 341
+2025-09-11 11:28:01,517 - INFO - Synced 1 fingerprint templates for user 7598
+2025-09-11 11:28:01,519 - INFO - Added user 7598 to 192.168.41.205 with UID 342
+2025-09-11 11:28:02,792 - INFO - Synced 1 fingerprint templates for user 218242
+2025-09-11 11:28:02,793 - INFO - Added user 218242 to 192.168.41.205 with UID 343
+2025-09-11 11:28:04,013 - INFO - Synced 1 fingerprint templates for user 207469
+2025-09-11 11:28:04,014 - INFO - Added user 207469 to 192.168.41.205 with UID 344
+2025-09-11 11:28:05,125 - INFO - Synced 1 fingerprint templates for user 222741
+2025-09-11 11:28:05,126 - INFO - Added user 222741 to 192.168.41.205 with UID 345
+2025-09-11 11:28:06,238 - INFO - Synced 1 fingerprint templates for user 6474
+2025-09-11 11:28:06,239 - INFO - Added user 6474 to 192.168.41.205 with UID 346
+2025-09-11 11:28:07,703 - INFO - Synced 2 fingerprint templates for user 10811
+2025-09-11 11:28:07,703 - INFO - Added user 10811 to 192.168.41.205 with UID 347
+2025-09-11 11:28:07,870 - INFO - Added user 53075 to 192.168.41.205 with UID 348
+2025-09-11 11:28:08,971 - INFO - Synced 1 fingerprint templates for user 213781
+2025-09-11 11:28:08,971 - INFO - Added user 213781 to 192.168.41.205 with UID 349
+2025-09-11 11:28:10,260 - INFO - Synced 2 fingerprint templates for user 208946
+2025-09-11 11:28:10,261 - INFO - Added user 208946 to 192.168.41.205 with UID 350
+2025-09-11 11:28:11,663 - INFO - Synced 2 fingerprint templates for user 212717
+2025-09-11 11:28:11,663 - INFO - Added user 212717 to 192.168.41.205 with UID 351
+2025-09-11 11:28:13,065 - INFO - Synced 2 fingerprint templates for user 207260
+2025-09-11 11:28:13,066 - INFO - Added user 207260 to 192.168.41.205 with UID 352
+2025-09-11 11:28:14,230 - INFO - Synced 1 fingerprint templates for user 103495
+2025-09-11 11:28:14,231 - INFO - Added user 103495 to 192.168.41.205 with UID 353
+2025-09-11 11:28:15,416 - INFO - Synced 1 fingerprint templates for user 2014
+2025-09-11 11:28:15,417 - INFO - Added user 2014 to 192.168.41.205 with UID 354
+2025-09-11 11:28:16,604 - INFO - Synced 1 fingerprint templates for user 206390
+2025-09-11 11:28:16,605 - INFO - Added user 206390 to 192.168.41.205 with UID 355
+2025-09-11 11:28:16,773 - INFO - Added user 200895 to 192.168.41.205 with UID 357
+2025-09-11 11:28:18,052 - INFO - Synced 1 fingerprint templates for user 45174
+2025-09-11 11:28:18,053 - INFO - Added user 45174 to 192.168.41.205 with UID 358
+2025-09-11 11:28:19,207 - INFO - Synced 1 fingerprint templates for user 203104
+2025-09-11 11:28:19,208 - INFO - Added user 203104 to 192.168.41.205 with UID 359
+2025-09-11 11:28:20,686 - INFO - Synced 2 fingerprint templates for user 203103
+2025-09-11 11:28:20,687 - INFO - Added user 203103 to 192.168.41.205 with UID 360
+2025-09-11 11:28:22,148 - INFO - Synced 2 fingerprint templates for user 55333
+2025-09-11 11:28:22,148 - INFO - Added user 55333 to 192.168.41.205 with UID 362
+2025-09-11 11:28:23,216 - INFO - Synced 1 fingerprint templates for user 10766
+2025-09-11 11:28:23,218 - INFO - Added user 10766 to 192.168.41.205 with UID 363
